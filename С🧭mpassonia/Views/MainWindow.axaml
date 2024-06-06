@@ -6,7 +6,8 @@
         xmlns:views="clr-namespace:С__mpassonia.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="С__mpassonia.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="С🧭mpassonia">
+        Icon="/Assets/kompas_pamehvwwuv3u.ico"
+        Title="С🧭mpassonia"
+		>
         <views:MainView />
 </Window>

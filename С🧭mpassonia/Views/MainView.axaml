@@ -43,52 +43,107 @@
 		</Styles>
 	</UserControl.Styles>
 
-	<Grid Margin="5">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="auto"/>
-			<RowDefinition />
-		</Grid.RowDefinitions>
-		<Grid Grid.Row="0" Margin="0 5 0 5">
-			<Button CornerRadius="5" Command="{Binding AddDirCommand}">
-				<StackPanel Margin="5">
-					<TextBlock Text="Добавить" Classes="ButtonHeader"/>
-					<TextBlock Text="директорию" Classes="ButtonNorm"/>
-				</StackPanel>
-			</Button>
-		</Grid>
-
-		<Border Grid.Row="1"
-				Margin="0 0 1 0">
-			<Grid>
+	<TabControl>
+		<TabItem Header="Директории">
+			<Grid Margin="5">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="auto"/>
-					<RowDefinition/>
+					<RowDefinition />
 				</Grid.RowDefinitions>
-				<TextBlock Margin="15 0 0 5" Text="Директории" Classes="Header"/>
-				<ListBox Grid.Row = "1" ItemsSource="{Binding DirList}" VerticalAlignment="Top">
-					<ListBox.ItemTemplate>
-						<DataTemplate>
-							<Grid>
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="auto"/>
-									<ColumnDefinition/>
-								</Grid.ColumnDefinitions>
-								<Button Command="{Binding DataContext.DeleteDirCommand, RelativeSource={RelativeSource AncestorType=v:MainView}}"
-										CommandParameter="{Binding}"
-										Margin="0 -8 0 -8">
-									🗑️
-								</Button>
-								<Button Grid.Column="1"
-										Margin="0 -8 0 -8"
-										Command="{Binding DataContext.OpenDirCommand, RelativeSource={RelativeSource AncestorType=v:MainView}}"
-										VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
-										CommandParameter="{Binding}"
-										Content="{Binding}"/>
-							</Grid>
-						</DataTemplate>
-					</ListBox.ItemTemplate>
-				</ListBox>
+				<Grid Grid.Row="0" Margin="0 5 0 5">
+					<Button CornerRadius="5" Command="{Binding AddDirCommand}">
+						<StackPanel Margin="5">
+							<TextBlock Text="Добавить" Classes="ButtonHeader"/>
+							<TextBlock Text="директорию" Classes="ButtonNorm"/>
+						</StackPanel>
+					</Button>
+				</Grid>
+
+				<Border Grid.Row="1"
+						Margin="0 0 1 0">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="auto"/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<TextBlock Margin="15 0 0 5" Text="Директории" Classes="Header"/>
+						<ListBox Grid.Row = "1" ItemsSource="{Binding DirList}" VerticalAlignment="Top">
+							<ListBox.ItemTemplate>
+								<DataTemplate>
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="auto"/>
+											<ColumnDefinition/>
+										</Grid.ColumnDefinitions>
+										<Button Command="{Binding DataContext.DeleteDirCommand, RelativeSource={RelativeSource AncestorType=v:MainView}}"
+												CommandParameter="{Binding}"
+												Margin="0 -8 0 -8">
+											🗑️
+										</Button>
+										<Button Grid.Column="1"
+												Margin="0 -8 0 -8"
+												Command="{Binding DataContext.OpenDirCommand, RelativeSource={RelativeSource AncestorType=v:MainView}}"
+												VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
+												CommandParameter="{Binding}"
+												Content="{Binding}"/>
+									</Grid>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+						</ListBox>
+					</Grid>
+				</Border>
 			</Grid>
-		</Border>
-	</Grid>
+		</TabItem>
+
+		<TabItem Header="Файлы">
+			<Grid Margin="5">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto"/>
+					<RowDefinition />
+				</Grid.RowDefinitions>
+				<Grid Grid.Row="0" Margin="0 5 0 5">
+					<Button CornerRadius="5" Command="{Binding AddFileCommand}">
+						<StackPanel Margin="5">
+							<TextBlock Text="Добавить" Classes="ButtonHeader"/>
+							<TextBlock Text="файл" Classes="ButtonNorm"/>
+						</StackPanel>
+					</Button>
+				</Grid>
+
+				<Border Grid.Row="1"
+						Margin="0 0 1 0">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="auto"/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<TextBlock Margin="15 0 0 5" Text="Файлы" Classes="Header"/>
+						<ListBox Grid.Row = "1" ItemsSource="{Binding FileList}" VerticalAlignment="Top">
+							<ListBox.ItemTemplate>
+								<DataTemplate>
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="auto"/>
+											<ColumnDefinition/>
+										</Grid.ColumnDefinitions>
+										<Button Command="{Binding DataContext.DeleteFileCommand, RelativeSource={RelativeSource AncestorType=v:MainView}}"
+												CommandParameter="{Binding}"
+												Margin="0 -8 0 -8">
+											🗑️
+										</Button>
+										<Button Grid.Column="1"
+												Margin="0 -8 0 -8"
+												Command="{Binding DataContext.OpenFileCommand, RelativeSource={RelativeSource AncestorType=v:MainView}}"
+												VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
+												CommandParameter="{Binding}"
+												Content="{Binding}"/>
+									</Grid>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+						</ListBox>
+					</Grid>
+				</Border>
+			</Grid>
+		</TabItem>
+	</TabControl>
 </UserControl>
