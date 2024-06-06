@@ -1,0 +1,94 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:С__mpassonia.ViewModels"
+             xmlns:v="clr-namespace:С__mpassonia.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="С__mpassonia.Views.MainView"
+             x:DataType="vm:MainViewModel">
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:MainViewModel />
+	</Design.DataContext>
+
+	<UserControl.Styles>
+		<Styles>
+			<Style Selector="TextBlock.Header">
+				<Setter Property="FontSize" Value="30"/>
+				<Setter Property="FontWeight" Value="Bold"/>
+			</Style>
+			<Style Selector="TextBlock.ButtonHeader">
+				<Setter Property="FontSize" Value="25"/>
+				<Setter Property="FontWeight" Value="Bold"/>
+				<Setter Property="HorizontalAlignment" Value="Center"/>
+			</Style>
+			<Style Selector="TextBlock.ButtonNorm">
+				<Setter Property="FontSize" Value="16"/>
+				<Setter Property="FontWeight" Value="Bold"/>
+				<Setter Property="HorizontalAlignment" Value="Center"/>
+				<Setter Property="Foreground" Value="#5F000000"/>
+			</Style>
+			<Style Selector="Border">
+				<Setter Property="BorderBrush" Value="Black"/>
+				<Setter Property="BorderThickness" Value="1"/>
+				<Setter Property="CornerRadius" Value="5"/>
+			</Style>
+		</Styles>
+		<Styles>
+			<Style Selector="ListBoxItem">
+				<Setter Property="VerticalAlignment" Value="Top"/>
+			</Style>
+		</Styles>
+	</UserControl.Styles>
+
+	<Grid Margin="5">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"/>
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Grid Grid.Row="0" Margin="0 5 0 5">
+			<Button CornerRadius="5" Command="{Binding AddDirCommand}">
+				<StackPanel Margin="5">
+					<TextBlock Text="Добавить" Classes="ButtonHeader"/>
+					<TextBlock Text="директорию" Classes="ButtonNorm"/>
+				</StackPanel>
+			</Button>
+		</Grid>
+
+		<Border Grid.Row="1"
+				Margin="0 0 1 0">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto"/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+				<TextBlock Margin="15 0 0 5" Text="Директории" Classes="Header"/>
+				<ListBox Grid.Row = "1" ItemsSource="{Binding DirList}" VerticalAlignment="Top">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="auto"/>
+									<ColumnDefinition/>
+								</Grid.ColumnDefinitions>
+								<Button Command="{Binding DataContext.DeleteDirCommand, RelativeSource={RelativeSource AncestorType=v:MainView}}"
+										CommandParameter="{Binding}"
+										Margin="0 -8 0 -8">
+									🗑️
+								</Button>
+								<Button Grid.Column="1"
+										Margin="0 -8 0 -8"
+										Command="{Binding DataContext.OpenDirCommand, RelativeSource={RelativeSource AncestorType=v:MainView}}"
+										VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
+										CommandParameter="{Binding}"
+										Content="{Binding}"/>
+							</Grid>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>
